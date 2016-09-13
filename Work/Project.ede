@@ -1,0 +1,13 @@
+;; Object Work
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "Work"
+  :file "Project.ede"
+  :name "Work"
+  :targets
+  (list
+    (ede-proj-target-makefile-program "Euclid"
+      :name "Euclid"
+      :path ""
+      :source '("Euclid.cpp")
+      :auxsource '("Euclid.h")))
+  :makefile-type 'Makefile.am)

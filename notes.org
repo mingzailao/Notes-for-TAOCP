@@ -1,0 +1,22 @@
+
+
+* Basic Algorithm
+** Algorithm
+*** Euclid Algorithm
+Given 2 number m and n, request for their bcommon divisor
+1. set r=m/n
+2. if r=0 Done return n
+3. if r!=0 $m\leftarrow n$, $n\leftarrow r$ , return E1
+**** Code
+
+ 
+
+#+BEGIN_SRC C++
+
+
+#+END_SRC
+
+
+
+
+
