@@ -9,14 +9,43 @@ Given 2 number m and n, request for their bcommon divisor
 3. if r!=0 $m\leftarrow n$, $n\leftarrow r$ , return E1
 **** Code
 
- 
-
 #+BEGIN_SRC C++
+//Eculid.h
+int Euclid(int m,int n){
+  int r=m%n;
+  while(r!=0){
+    m=n;
+    n=r;
+    r=m%n;
+  }
+  return n;
+}
+// Euclid.cpp
+#include<iostream>
+#include "Euclid.h"
+using namespace std;
+int main()
+{
+    int m,n;
+    cout<<"input 2 number"<<endl;
+    cin>>m>>n;
+    cout<<"run the function"<<endl;
+    cout<<Euclid(m,n)<<endl;
+    return 0;
+}
 
 
 #+END_SRC
 
 
+
+
+*** A Variant of Euclid Algorithm
+1. if $m\ge n$, exchange m,n ($m\leftrightarrow n$)
+2. set r=m/n
+3. if r=0 Done return n
+4. if r!=0 $m\leftarrow n$, $n\leftarrow r$ , return E2
+**** Code
 
 
 
