@@ -1,6 +1,6 @@
 /hello/
 /Work/
-./notes.*
+notes.*
 !./notes.html 
 !./notes.pdf 
 !./notes.org 
