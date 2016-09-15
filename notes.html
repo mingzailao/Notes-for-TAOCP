@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>notes</title>
-<!-- 2016-09-14 Wed 12:39 -->
+<!-- 2016-09-15 Thu 16:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="apple" />
@@ -189,6 +189,13 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-1">1.1. Algorithm</a>
 <ul>
 <li><a href="#sec-1-1-1">1.1.1. Euclid Algorithm</a></li>
+<li><a href="#sec-1-1-2">1.1.2. A Variant of Euclid Algorithm</a></li>
+<li><a href="#sec-1-1-3">1.1.3. Exercise</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. Mathematical Foundation</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. Mathematical Induction(MI)</a></li>
 </ul>
 </li>
 </ul>
@@ -209,7 +216,7 @@ for the JavaScript code in this tag.
 Given 2 number m and n, request for their bcommon divisor
 </p>
 <ol class="org-ol">
-<li>set r=m/n
+<li>set r=m%n
 </li>
 <li>if r=0 Done return n
 </li>
@@ -248,12 +255,200 @@ Given 2 number m and n, request for their bcommon divisor
 </div>
 </li></ol>
 </div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> A Variant of Euclid Algorithm</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ol class="org-ol">
+<li>if \(m\ge n\), exchange m,n (\(m\leftrightarrow n\))
+</li>
+<li>set r=m%n
+</li>
+<li>if r=0 Done return n
+</li>
+<li>if r!=0 \(m\leftarrow n\), \(n\leftarrow r\) , return E2
+</li>
+</ol>
+</div>
+<ol class="org-ol"><li><a id="sec-1-1-2-1" name="sec-1-1-2-1"></a>Code<br  /><div class="outline-text-5" id="text-1-1-2-1">
+<div class="org-src-container">
+
+<pre class="src src-C++"><span style="color: #b22222;">//</span><span style="color: #b22222;">Functional file</span>
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">Variant_Euclid</span>(<span style="color: #228b22;">int</span> <span style="color: #a0522d;">m</span>,<span style="color: #228b22;">int</span> <span style="color: #a0522d;">n</span>){
+  <span style="color: #a020f0;">if</span>(m&gt;n){
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">tmp</span>=n;
+    n=m;
+    m=tmp;
+  }
+  <span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span>=m%n;
+  <span style="color: #a020f0;">while</span>(r!=0){
+    m=n;
+    n=r;
+    r=m%n;
+  }
+  <span style="color: #a020f0;">return</span> n;
+}
+<span style="color: #b22222;">//</span><span style="color: #b22222;">Interface</span>
+<span style="color: #483d8b;">#include</span><span style="color: #8b2252;">&lt;iostream&gt;</span>
+<span style="color: #483d8b;">#include</span> <span style="color: #8b2252;">"Variant_Euclid.h"</span>
+
+<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">cin</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">cout</span>;
+<span style="color: #a020f0;">using</span> <span style="color: #008b8b;">std</span>::<span style="color: #228b22;">endl</span>;
+<span style="color: #228b22;">int</span> <span style="color: #0000ff;">main</span>()
+{
+    cout&lt;&lt;<span style="color: #8b2252;">"Please input 2 number"</span>&lt;&lt;endl;
+    <span style="color: #228b22;">int</span> <span style="color: #a0522d;">m</span>,<span style="color: #a0522d;">n</span>;
+    cin&gt;&gt;m&gt;&gt;n;
+    cout&lt;&lt;Variant_Euclid(m,n)&lt;&lt;endl;
+    <span style="color: #a020f0;">return</span> 0;
+}
+</pre>
+</div>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Exercise</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>1
+</li>
+</ul>
+<p>
+\(t \leftarrow a\), \(a \leftarrow b\), \(b \leftarrow c\), \(c \leftarrow d\), \(a \leftarrow t\).
+</p>
+<ul class="org-ul">
+<li>2. prove that after step 2, \(m>n\)
+</li>
+</ul>
+
+<p>
+solution
+</p>
+
+<p>
+In step one, \(r=m\%n\), if \(r\neq 0\) (r&lt;n),
+then \(m\leftarrow n\),
+\(n\leftarrow r\),
+so \(m>n\)
+</p>
+<ul class="org-ul">
+<li>4. 
+</li>
+</ul>
+
+<p>
+Solution
+</p>
+
+<p>
+57
+</p>
+<ul class="org-ul">
+<li>5.
+</li>
+</ul>
+
+<p>
+Finiteness: the reader can work on exercices and check answers indefinitely
+</p>
+
+<p>
+Output: the procedure have no output
+</p>
+
+<p>
+Effectiveness: relaxing and sleeping are not effective operations
+</p>
+<ul class="org-ul">
+<li>6.
+</li>
+</ul>
+
+<p>
+N0 = 1; N1 = 2; N2 = 3; N3 = 4; N4 = 3;
+</p>
+
+<p>
+T5 = (1+2+3+4+3)/5 = 13/5 = 2.6
+</p>
+
+<p>
+If k &lt; 5, the first iteration just permutes the values of m and n.
+</p>
+
+<p>
+And if k &gt;= 5, the first iteration is a division of k by 5.
+</p>
+
+<p>
+So the number of steps is the same for each class modulo 5 of integers.
+</p>
+<ul class="org-ul">
+<li>7. 
+</li>
+</ul>
+
+<p>
+\(U_n=T_{n+1}\)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Mathematical Foundation</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Mathematical Induction(MI)</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ol class="org-ol">
+<li>\(P(1)\) is true.
+</li>
+<li>if \(P(2),P(3),\cdots,P(n)\) is true then \(P(n+1)\) is True.
+</li>
+</ol>
+</div>
+<ol class="org-ol"><li><a id="sec-1-2-1-1" name="sec-1-2-1-1"></a>Example<br  /><div class="outline-text-5" id="text-1-2-1-1">
+\begin{equation}
+\label{eq:1}
+1+3+5+7+9=5^2
+\end{equation}
+<p>
+then 
+</p>
+\begin{equation}
+\label{eq:2}
+1+3+\cdots+(2n-1)=n^2
+\end{equation}
+<p>
+Call this equation \(P(n)\)
+</p>
+<hr  />
+<ol class="org-ol">
+<li>&because; 1=1<sup>2</sup> so P(1) is True
+</li>
+<li>if P(1),P(2),P(3),&ctdot;,P(n) is True, especially P(n) is True then Eq. (<a href="#eq:2">eq:2</a>), add (2n+1) on both sides of the equation:
+</li>
+</ol>
+\begin{equation*}
+1+3+\cdots+(2n-1)+(2n+1)=n^2+2n+1=(n+1)^2
+\end{equation*}
+<p>
+we get P(n+1) is True.
+</p>
+<hr  />
+</div>
+</li></ol>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: apple</p>
-<p class="date">Created: 2016-09-14 Wed 12:39</p>
+<p class="date">Created: 2016-09-15 Thu 16:53</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

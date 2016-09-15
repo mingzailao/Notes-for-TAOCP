@@ -1,2 +1,6 @@
 /hello/
 /Work/
+./notes.*
+!./notes.html 
+!./notes.pdf 
+!./notes.org 

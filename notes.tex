@@ -1,0 +1,203 @@
+% Created 2016-09-15 Thu 16:43
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{apple}
+\date{\today}
+\title{notes}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Basic Algorithm}
+\label{sec-1}
+\subsection{Algorithm}
+\label{sec-1-1}
+\subsubsection{Euclid Algorithm}
+\label{sec-1-1-1}
+Given 2 number m and n, request for their bcommon divisor
+\begin{enumerate}
+\item set r=m\%n
+\item if r=0 Done return n
+\item if r!=0 $m\leftarrow n$, $n\leftarrow r$ , return E1
+\end{enumerate}
+\begin{enumerate}
+\item Code
+\label{sec-1-1-1-1}
+
+\begin{verbatim}
+//Eculid.h
+int Euclid(int m,int n){
+  int r=m%n;
+  while(r!=0){
+    m=n;
+    n=r;
+    r=m%n;
+  }
+  return n;
+}
+// Euclid.cpp
+#include<iostream>
+#include "Euclid.h"
+using namespace std;
+int main()
+{
+    int m,n;
+    cout<<"input 2 number"<<endl;
+    cin>>m>>n;
+    cout<<"run the function"<<endl;
+    cout<<Euclid(m,n)<<endl;
+    return 0;
+}
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{A Variant of Euclid Algorithm}
+\label{sec-1-1-2}
+\begin{enumerate}
+\item if $m\ge n$, exchange m,n ($m\leftrightarrow n$)
+\item set r=m\%n
+\item if r=0 Done return n
+\item if r!=0 $m\leftarrow n$, $n\leftarrow r$ , return E2
+\end{enumerate}
+\begin{enumerate}
+\item Code
+\label{sec-1-1-2-1}
+\begin{verbatim}
+//Functional file
+int Variant_Euclid(int m,int n){
+  if(m>n){
+    int tmp=n;
+    n=m;
+    m=tmp;
+  }
+  int r=m%n;
+  while(r!=0){
+    m=n;
+    n=r;
+    r=m%n;
+  }
+  return n;
+}
+//Interface
+#include<iostream>
+#include "Variant_Euclid.h"
+
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+    cout<<"Please input 2 number"<<endl;
+    int m,n;
+    cin>>m>>n;
+    cout<<Variant_Euclid(m,n)<<endl;
+    return 0;
+}
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{Exercise}
+\label{sec-1-1-3}
+\begin{itemize}
+\item 1
+\end{itemize}
+$t \leftarrow a$, $a \leftarrow b$, $b \leftarrow c$, $c \leftarrow d$, $a \leftarrow t$.
+\begin{itemize}
+\item 2. prove that after step 2, $m>n$
+\end{itemize}
+
+solution
+
+In step one, $r=m\%n$, if $r\neq 0$ (r<n),
+then $m\leftarrow n$,
+$n\leftarrow r$,
+so $m>n$
+\begin{itemize}
+\item 4.
+\end{itemize}
+
+Solution
+
+57
+\begin{itemize}
+\item 5.
+\end{itemize}
+
+Finiteness: the reader can work on exercices and check answers indefinitely
+
+Output: the procedure have no output
+
+Effectiveness: relaxing and sleeping are not effective operations
+\begin{itemize}
+\item 6.
+\end{itemize}
+
+N0 = 1; N1 = 2; N2 = 3; N3 = 4; N4 = 3;
+
+T5 = (1+2+3+4+3)/5 = 13/5 = 2.6
+
+If k < 5, the first iteration just permutes the values of m and n.
+
+And if k >= 5, the first iteration is a division of k by 5.
+
+So the number of steps is the same for each class modulo 5 of integers.
+\begin{itemize}
+\item 7.
+\end{itemize}
+
+$U_n=T_{n+1}$
+
+\subsection{Mathematical Foundation}
+\label{sec-1-2}
+\subsubsection{Mathematical Induction(MI)}
+\label{sec-1-2-1}
+\begin{enumerate}
+\item $P(1)$ is true.
+\item if $P(2),P(3),\cdots,P(n)$ is true then $P(n+1)$ is True.
+\end{enumerate}
+\subsubsection{Example}
+\label{sec-1-2-2}
+\begin{equation}
+\label{eq:1}
+1+3+5+7+9=5^2
+\end{equation}
+then 
+\begin{equation}
+\label{eq:2}
+1+3+\cdots+(2n-1)=n^2
+\end{equation}
+Call this equation $P(n)$
+
+\rule{\linewidth}{0.5pt}
+\begin{enumerate}
+\item $\because$ 1=1$^{\text{2}}$ so P(1) is True
+\item if P(1),P(2),P(3),$\cdots{}$,P(n) is True, especially P(n) is True then Eq. (\ref{eq:2}), add (2n+1) on both sides of the equation:
+\end{enumerate}
+\begin{equation*}
+1+3+\cdots+(2n-1)+(2n+1)=n^2+2n+1=(n+1)^2
+\end{equation*}
+we get P(n+1) is True.
+
+\rule{\linewidth}{0.5pt}
+% Emacs 24.5.1 (Org mode 8.2.10)
+\end{document}
